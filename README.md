@@ -1,12 +1,30 @@
-# React + Vite
+# installed
+- react route
+- tailwind CSS
+- daisyUI
+- react icon
+- firebase authentication
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# firebase authentication
+enter firebase authentication > go to console
+create a firebase project
+enter project name (react-authentication-test)
+disable Google Analytics (optional) > done 
 
-Currently, two official plugins are available:
+go to web icon in the new project 
+Register app (react-authentication-test) > click "register app"
+then install firebase (npm install firebase)
+store the full code (firebaseConfig) in a "initialize.init.js" file > go to console
+go to authentication under the build
+click "get started"
+select sign-in method, you want (google)
+enable > add our email > save [you can see google will be enable] DONE
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+again enter firebase authentication > click "get started" under the "web" dropdown
+add getAuth
+click "sign in with google" under the "web" dropdown
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+
+

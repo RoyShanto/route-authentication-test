@@ -1,6 +1,11 @@
+import { useContext } from 'react';
 import { NavLink } from 'react-router';
+import { AuthContext } from '../../provider/AuthProvider';
 
 const Header = () => {
+
+    const { user } = useContext(AuthContext)
+
     return (
         <div className='flex items-center justify-between p-5 m-2'>
             <h1 className='text-5xl'>Header</h1>
@@ -10,6 +15,9 @@ const Header = () => {
                 <li><NavLink to={'/registration'}>Registration</NavLink></li>
                 <li><NavLink to={'/profile'}>Profile</NavLink></li>
             </ul>
+            <div>
+                <h3>{user?.displayName}</h3>
+            </div>
         </div>
     );
 };

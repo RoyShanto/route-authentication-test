@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { NavLink } from 'react-router';
+import { AuthContext } from "../../provider/AuthProvider";
 
 
 const Login = () => {
+
+
+    const { googleSingIn, setUser, user } = useContext(AuthContext)
 
     const [eye, setEye] = useState(false)
     const handleEye = () => {
@@ -16,6 +20,18 @@ const Login = () => {
         const password = e.target.password.value;
         console.log(email, password)
     }
+
+    const handleGoogleSignIn = () => {
+        googleSingIn()
+            .then((result) => {
+                setUser(result.user)
+
+            }).catch((error) => {
+                console.log('Error', error.message)
+            });
+    }
+
+console.log(user)
 
     return (
         <div>
@@ -30,13 +46,12 @@ const Login = () => {
                         <div><a className="link link-hover">Forgot password?</a></div>
                         <button type="submit" className="btn btn-neutral mt-4">Login</button>
                         <p>If you don't have account.. <NavLink to={'/registration'} className="text-red-300">Sign Up</NavLink></p>
-
                     </fieldset>
                 </div>
             </form>
             <br />
             <p className="inline mr-3">Login By : </p>
-            <button className="btn btn-soft btn-info border-blue-500">Google</button>
+            <button onClick={handleGoogleSignIn} className="btn btn-soft btn-info border-blue-500">Google</button>
         </div>
     );
 };
