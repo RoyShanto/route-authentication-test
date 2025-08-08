@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavLink } from 'react-router';
 
 const Header = () => {
@@ -8,6 +7,7 @@ const Header = () => {
             <ul className='flex space-x-5'>
                 <li><NavLink to={'/home'}>Home</NavLink></li>
                 <li><NavLink to={'/login'}>Login</NavLink></li>
+                <li><NavLink to={'/registration'}>Registration</NavLink></li>
                 <li><NavLink to={'/profile'}>Profile</NavLink></li>
             </ul>
         </div>
