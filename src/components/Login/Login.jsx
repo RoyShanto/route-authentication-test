@@ -7,7 +7,7 @@ import { AuthContext } from "../../provider/AuthProvider";
 const Login = () => {
 
 
-    const { googleSingIn, setUser, user } = useContext(AuthContext)
+    const { googleSingIn } = useContext(AuthContext)
 
     const [eye, setEye] = useState(false)
     const handleEye = () => {
@@ -24,14 +24,12 @@ const Login = () => {
     const handleGoogleSignIn = () => {
         googleSingIn()
             .then((result) => {
-                setUser(result.user)
+                console.log(result.user)
 
             }).catch((error) => {
                 console.log('Error', error.message)
             });
     }
-
-console.log(user)
 
     return (
         <div>
