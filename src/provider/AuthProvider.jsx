@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { auth } from "../firebase/initialize.init";
 import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
 
@@ -16,14 +16,36 @@ const AuthProvider = ({ children }) => {
         return signOut(auth)
     }
 
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            setUser(user)
+
+    useEffect(() => {
+        const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+            if (currentUser) {
+                console.log("current user", currentUser);
+                setUser(currentUser);
+            }
+            else {
+                setUser(null)
+                console.log("current user", currentUser);
+            }
+        })
+
+        return () => {
+            unSubscribe();
         }
-        else {
-            setUser(null)
-        }
-    });
+
+    }, [])
+
+
+    // onAuthStateChanged(auth, (currentUser) => {
+    //     if (currentUser) {
+    //         console.log("current user", currentUser);
+    //         setUser(currentUser);
+    //     }
+    //     else {
+    //         setUser(null)
+    //         console.log("current user", currentUser);
+    //     }
+    // })
 
 
 
