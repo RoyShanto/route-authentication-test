@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { NavLink } from 'react-router';
+import { NavLink, useNavigate } from 'react-router';
 import { AuthContext } from "../../provider/AuthProvider";
 
 
@@ -9,6 +9,7 @@ const Login = () => {
 
     const { googleSingIn } = useContext(AuthContext)
 
+    const navigate = useNavigate();
     const [eye, setEye] = useState(false)
     const handleEye = () => {
         setEye(!eye)
@@ -19,13 +20,14 @@ const Login = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
         console.log(email, password)
+        // e.target.reset();
     }
 
     const handleGoogleSignIn = () => {
         googleSingIn()
             .then((result) => {
                 console.log(result.user)
-
+                navigate('/home')
             }).catch((error) => {
                 console.log('Error', error.message)
             });

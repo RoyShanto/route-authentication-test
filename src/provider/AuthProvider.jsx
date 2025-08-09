@@ -6,13 +6,16 @@ export const AuthContext = createContext(null)
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
+    const [loading, setLoading] = useState(true)
 
     const googleSingIn = () => {
+        // setLoading(true)
         const GoogleProvider = new GoogleAuthProvider();
         return signInWithPopup(auth, GoogleProvider)
     }
 
     const googleLogOut = () => {
+        // setLoading(true)
         return signOut(auth)
     }
 
@@ -27,6 +30,7 @@ const AuthProvider = ({ children }) => {
                 setUser(null)
                 console.log("current user", currentUser);
             }
+            setLoading(false)
         })
 
         return () => {
@@ -52,7 +56,8 @@ const AuthProvider = ({ children }) => {
     const authData = {
         googleSingIn,
         googleLogOut,
-        user
+        user,
+        loading
     }
 
     return (

@@ -22,7 +22,10 @@ const Header = () => {
             <ul className='flex space-x-5'>
                 <li><NavLink to={'/home'}>Home</NavLink></li>
                 <li><NavLink to={'/registration'}>Registration</NavLink></li>
-                <li><NavLink to={'/profile'}>Profile</NavLink></li>
+                {user && <>
+                    <li><NavLink to={'/profile'}>Profile</NavLink></li>
+                    <li><NavLink to={'/history'}>History</NavLink></li>
+                </>}
             </ul>
             <div>
                 {
