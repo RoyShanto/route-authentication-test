@@ -7,7 +7,7 @@ import { AuthContext } from "../../provider/AuthProvider";
 const Login = () => {
 
 
-    const { googleSingIn } = useContext(AuthContext)
+    const { googleSingIn, signInUser } = useContext(AuthContext)
 
     const navigate = useNavigate();
     const [eye, setEye] = useState(false)
@@ -19,8 +19,14 @@ const Login = () => {
         e.preventDefault()
         const email = e.target.email.value;
         const password = e.target.password.value;
-        console.log(email, password)
-        // e.target.reset();
+        // console.log(email, password)
+        signInUser(email, password)
+            .then((result) => {
+                console.log(result)
+                navigate('/home')
+                e.target.reset();
+            })
+            .catch((error) => { console.log('Error', error.message) });
     }
 
     const handleGoogleSignIn = () => {
@@ -28,9 +34,8 @@ const Login = () => {
             .then((result) => {
                 console.log(result.user)
                 navigate('/home')
-            }).catch((error) => {
-                console.log('Error', error.message)
-            });
+            })
+            .catch((error) => { console.log('Error', error.message) });
     }
 
     return (
@@ -41,7 +46,7 @@ const Login = () => {
                     <fieldset className="fieldset relative">
                         <input type="email" name="email" className="input w-full" placeholder="Email" />
                         <input type={eye ? "text" : "password"} name="password" className="input w-full" placeholder="Password" />
-                        <div onClick={handleEye} className="absolute top-16 right-3 text-lg">
+                        <div onClick={handleEye} className="absolute top-15 right-3 text-lg">
                             {eye ? <FaEye /> : <FaEyeSlash />} </div>
                         <div><a className="link link-hover">Forgot password?</a></div>
                         <button type="submit" className="btn btn-neutral mt-4">Login</button>
